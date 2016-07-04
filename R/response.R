@@ -5,7 +5,6 @@ generate_data <- function(X, beta, invLinkFUN, distFUN, f) {
   } else {
     Z <- model.matrix(f, data = X)
   }
-  Z <- cbind(1, Z)
   if (ncol(Z) != length(beta))
     stop("The number of beta doesn't match the number of covariates.")
 
