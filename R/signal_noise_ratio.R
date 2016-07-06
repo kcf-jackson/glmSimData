@@ -7,15 +7,6 @@ init_perf_fun <- function(y, X, beta, family, item_label) {
 }
 
 
-init_perf_fun_2 <- function(y, X, family) {
-  my_data <- data.frame(resp = y, X)
-  function(param) {
-    tmp <- summary(glm(resp ~ . -1, data = my_data, family, weights = round(exp(param)) ))
-    abs(tmp$coefficients[,1] / tmp$coefficients[,2])
-  }
-}
-
-
 #' Objective function
 # give y, X, beta, family; generate weights; outputs ratio.
 generate_ratio <- function(y, X, beta, family, diag_weights, ...) {
