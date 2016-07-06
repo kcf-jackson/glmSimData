@@ -1,4 +1,5 @@
 #' Simulate the response data given covariates, beta and DGP specification.
+#' @export
 generate_data <- function(X, beta, invLinkFUN, distFUN, f) {
   if (all.equal(f, identity)) {
     Z <- X
