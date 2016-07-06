@@ -1,10 +1,10 @@
-Package: artificialData
+Package: glmSimData
 Title: A package for simulating data
 Version: 0.1.0
 Authors@R: person("Jackson", "Kwok", email = "kcf.jackson@gmail.com", role = c("aut", "cre"))
-Description: Description: This package simulates artifical data following a GLM model with dependent / independent, numerical / ordinal covariates.
+Description: Description: This package simulates data following a GLM model with dependent / independent, numerical / ordinal covariates.
 Depends: R (>= 3.2.2)
-Imports: 
+Imports:
   clusterGeneration,
   orddata
 License: GPL-3
