@@ -13,6 +13,7 @@
 #' For example, consider two covariates X1, X2, each covariate has two categories.
 #' Suppose X1 has marginals (0.5, 0.5), and X2 has marginals (0.3, 0.7).
 #' Then one should input "marginal_probs = matrix(c(0.5,0.5, 0.3,0.7), nrow = 2, byrow = FALSE)".
+#' @export
 generate_dependent_covariates <- function(no_pts, no_covariates, type = 'numerical',
                                           no_categories, ...) {
   if (!(type %in% c("numerical", "categorical")))

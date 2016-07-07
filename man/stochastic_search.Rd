@@ -5,7 +5,8 @@
 \title{Stochastic Search}
 \usage{
 stochastic_search(dim_param, perf_fun, loss_fun = ls_loss, target_perf,
-  max_iter = 100, tol = 0, curiosity = 1, block_num, block_size, param)
+  max_iter = 100, tol = 0, curiosity = 1, block_num, block_size,
+  lambda = 0, reg_fun = zero_reg, param)
 }
 \description{
 Stochastic Search

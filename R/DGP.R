@@ -63,7 +63,6 @@
 
 
 #' Return the sampling distribution of the family object
-#' @export
 family2distFUN <- function(family, ...) {
   distFUN <- switch(
     family$family,

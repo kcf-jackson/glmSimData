@@ -23,3 +23,13 @@ expand.lists <- function(df0, df1) {
   }
   res
 }
+
+
+#' Take exponential then round a number
+#' @description It's used to guarantee non-negative integers.
+round_exp <- function(x) round(exp(x)) 
+
+
+#' Take exponential then round a number
+#' @description It's used to guarantee non-negative integers.
+ceil_exp <- function(x) ceiling(exp(x)) 

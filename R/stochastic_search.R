@@ -3,6 +3,18 @@
 ls_loss <- function(x, y) mean((x - y) ^ 2)
 
 
+#' Zero regularisation function
+zero_reg <- function(x) 0
+
+
+#' L1 regularisation function
+L1_reg <- function(param) sum(abs(param))
+
+
+#' L2 regularisation function
+L2_reg <- function(param) sum(param ^ 2)
+
+
 #' Partition a sequence into blocks
 block_seq <- function(dim_param, block_num, block_size) {
   if (!missing(block_num) & !missing(block_size))
@@ -26,17 +38,17 @@ block_seq_by_size <- function(dim_param, block_size) {
 
 
 #' Stochastic Search
-#' @export
 stochastic_search <- function(dim_param, perf_fun,
                               loss_fun=ls_loss, target_perf,
                               max_iter=100, tol=0, curiosity=1,
-                              block_num, block_size, param) {
+                              block_num, block_size, 
+                              lambda=0, reg_fun=zero_reg, param) {
   #initialisation
   if (!missing(block_num) & !missing(block_size))
     stop("'block_num' and 'block_size' cannot both be specified.")
   if (missing(param)) param <- rep(0, dim_param)
   current_perf <- perf_fun(param)
-  current_loss <- loss_fun(current_perf, target_perf)
+  current_loss <- loss_fun(current_perf, target_perf) + lambda * reg_fun(param)
   cat("Beginning loss: ", current_loss, "\n")
 
   iter <- 0
@@ -50,7 +62,7 @@ stochastic_search <- function(dim_param, perf_fun,
       new_param[update_range] <- new_param[update_range] +
         curiosity * runif(length(update_range), min = -0.001, max = 0.001)
       new_perf <- perf_fun(new_param)
-      new_loss <- loss_fun(new_perf, target_perf)
+      new_loss <- loss_fun(new_perf, target_perf) + lambda * reg_fun(param)
       if (new_loss < current_loss) {
         param <- new_param
         current_perf <- new_perf
@@ -61,5 +73,5 @@ stochastic_search <- function(dim_param, perf_fun,
     # cat("Current loss: ", current_loss, "\n")
   }
   cat("Final loss: ", current_loss, "\n")
-  list(param, current_perf, current_loss)
+  list(parameter = param, output = current_perf, loss = current_loss)
 }

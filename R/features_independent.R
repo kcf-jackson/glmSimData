@@ -11,6 +11,7 @@
 #' Note that for 'gaussian', standard normal is assumed if parameters are not given. \cr\cr
 #' If 'categorical' is chosen, one can specify the distribution for the categories through the
 #' parameter 'prob'.
+#' @export
 generate_independent_covariates <- function(no_pts, no_covariates, type = "numerical",
                                             no_categories, ...) {
   if (!(type %in% c("numerical", "categorical")))

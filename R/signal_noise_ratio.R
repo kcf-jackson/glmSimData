@@ -1,38 +1,20 @@
 #' Initialise objective function for optimisation
 #' @export
-init_perf_fun <- function(y, X, beta, family, item_label) {
+init_signal_noise <- function(y, X, family, tf = identity) {
+  my_data <- data.frame(resp = y, X)
   function(param) {
-    generate_ratio(y, X, beta, family, param)[[item_label]]
+    tmp <- summary(glm(resp ~ . -1, data = my_data, 
+                        family, weights = tf(param)))
+    abs(tmp$coefficients[,1] / tmp$coefficients[,2])
   }
 }
 
 
-#' Objective function
-# give y, X, beta, family; generate weights; outputs ratio.
-generate_ratio <- function(y, X, beta, family, diag_weights, ...) {
-  # if (missing(diag_weights)) diag_weights <- rnorm(nrow(X))
-  n <- nrow(X)
-  p <- ncol(X)
-  if (length(diag_weights) != n)
-    stop("'diag_weights' must have length equal to the number of rows in X.")
-
-  W <- diag(exp(diag_weights))
-  A <- t(X) %*% W %*% X
-  A_inv <- solve(A)
-  # diag(A_inv)
-
-  distFUN <- family2distFUN(family, ...)
-  if (missing(beta)) beta <- rnorm(p)
-  eta <- X %*% beta
-  mu <- family$linkinv(eta)
-  if (missing(y)) y <- purrr::map_dbl(mu, distFUN)
-
-  z <- eta + (y - mu) / family$mu.eta(eta)  #g'(mu) = g'(g^{-1}(eta)) = mu.eta(eta)^{-1}
-  beta <- as.vector(A_inv %*% t(X) %*% W %*% z)
-  signal_noise_ratio <- abs( beta / sqrt(diag(A_inv)) )
-
-  list(beta_estimates = beta, signal_noise_ratio = signal_noise_ratio,
-       diag_weights = diag(W))
+init_threshold_L1_reg <- function(threshold, tf = identity) {
+  function(param) {
+    param <- tf(param)
+    abs(L1_reg(param) - threshold)
+  }
 }
 
 
