@@ -4,8 +4,7 @@
 \alias{generate_beta}
 \title{Generate predictor coefficients according to the signal-noise ratio}
 \usage{
-generate_beta(X, family, f = identity, target_ratio, max_iter = 100,
-  tol = 0.1, curiosity = 1000, block_num = 20, lambda = 0)
+generate_beta(X, family, f = identity, target_ratio, ...)
 }
 \description{
 Generate predictor coefficients according to the signal-noise ratio

@@ -1,20 +1,32 @@
 #' Initialise objective function for optimisation
 #' @export
-init_signal_noise <- function(y, X, family, tf = identity) {
-  my_data <- data.frame(resp = y, X)
+init_signal_noise <- function(my_data, family, tf = identity) {
   function(param) {
-    tmp <- summary(glm(resp ~ . -1, data = my_data, 
-                        family, weights = tf(param)))
-    abs(tmp$coefficients[,1] / tmp$coefficients[,2])
+    glm_model <- glm(resp_var ~ . -1, data = my_data, 
+                      family, weights = tf(param))
+    extract_ratio(glm_model)
   }
 }
 
 
-init_threshold_L1_reg <- function(threshold, tf = identity) {
-  function(param) {
-    param <- tf(param)
-    abs(L1_reg(param) - threshold)
-  }
+#' extract signal-noise ratio from GLM object.
+#' @export
+extract_ratio <- function(model_obj, absolute = TRUE) {
+  coeff <- summary(model_obj)$coefficients
+  r <- coeff[,1] / coeff[,2]
+  if (absolute) return(abs(r))
+  r
+}
+
+
+#' Compare the signal-noise ratios
+#' @export
+diff_ratio <- function(r1, r2) {
+  print(rbind(simulated_ratio = r1, target_ratio = r2))
+  l1 <- vec_find_signal_label(r1)
+  l2 <- vec_find_signal_label(r2)
+  print(rbind(simulated_label = l1, target_label = l2))
+  cat("The loss is: ", ls_loss(r1, r2), "\n")
 }
 
 

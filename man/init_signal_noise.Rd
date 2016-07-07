@@ -4,7 +4,7 @@
 \alias{init_signal_noise}
 \title{Initialise objective function for optimisation}
 \usage{
-init_signal_noise(y, X, family, tf = identity)
+init_signal_noise(my_data, family, tf = identity)
 }
 \description{
 Initialise objective function for optimisation
