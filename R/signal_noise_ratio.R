@@ -1,9 +1,7 @@
 #' Initialise objective function for optimisation
-#' @export
 init_signal_noise <- function(my_data, family, tf = identity) {
   function(param) {
-    glm_model <- glm(resp_var ~ . -1, data = my_data, 
-                      family, weights = tf(param))
+    glm_model <- glm(resp_var ~ . -1, data = my_data, family, weights = tf(param))
     extract_ratio(glm_model)
   }
 }

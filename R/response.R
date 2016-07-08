@@ -35,17 +35,3 @@ family2distFUN <- function(family, ...) {
   )
   distFUN
 }
-
-
-#' Extract (ungrouped) data from the beta object
-extract_data <- function(beta_obj) {
-  ungroup_data(beta_obj$data, beta_obj$weights)
-}
-#' Ungroup grouped data according to given weights.
-ungroup_data <- function(my_data, w) {
-  my_data[rep(1:nrow(my_data), w), ]
-}
-#' Trim 
-trim_big_number <- function(n, s = 2) {
-  n - signif(n, s)
-}

@@ -1,7 +1,11 @@
 #' Generate predictor coefficients according to the signal-noise ratio
+#' @details For family other than 'gaussian', the function reweights the samples such that
+#' the target signal-noise ratio is reached. This implies the data records are treated as
+#' group records.
 #' @export
-generate_beta <- function(X, family, f = identity, target_ratio, ...) {
-  if (family$family == "gaussian") 
+generate_beta <- function(X, family, f = identity, target_ratio,
+                          group = TRUE, ...) {
+  if (family$family == "gaussian")
     return(generate_beta_gaussian(X, target_ratio, ...))
 
   res <- generate_weights(X, family, f, target_ratio, ...)
@@ -9,8 +13,13 @@ generate_beta <- function(X, family, f = identity, target_ratio, ...) {
   w <- res$return$parameter
   glm_model <- glm(resp_var ~ . -1, data = my_data, family,
                     weights = ceil_exp(w))
-  list(beta = glm_model$coefficients, weights = ceil_exp(w),
-    data = my_data, SNR = extract_ratio(glm_model))
+  if (group)
+    return( list(beta = glm_model$coefficients, weights = ceil_exp(w),
+            data = my_data, SNR = extract_ratio(glm_model)) )
+
+  list(beta = glm_model$coefficients, weights = rep(1, nrow(X)),
+        data = ungroup_data(my_data, ceil_exp(w)),
+        SNR = extract_ratio(glm_model))
 }
 #' Optimise the weights matrix to match the target signal-noise ratio
 generate_weights <- function(X, family, f = identity, target_ratio,
@@ -20,7 +29,7 @@ generate_weights <- function(X, family, f = identity, target_ratio,
   my_data <- generate_response(X, beta, family, f = f)
   csignal_ratio <- init_signal_noise(my_data, family, tf = ceil_exp) %>%
                     compiler::cmpfun()
-  res <- stochastic_search(n, csignal_ratio, ls_loss, target_ratio,
+  res <- stochastic_search(nrow(X), csignal_ratio, ls_loss, target_ratio,
                            max_iter = max_iter, tol = tol,
                            curiosity = curiosity, block_num = block_num)
   if (res$loss > tol) {
@@ -29,22 +38,23 @@ generate_weights <- function(X, family, f = identity, target_ratio,
   print(res$loss)
   list(data = my_data, return = res)
 }
-
-
 #' Generate predictor coefficients according to the signal-noise ratio for Gaussian distribution
 generate_beta_gaussian <- function(X, target_ratio, ...) {
   tX <- t(X)
   XTX_inv <- solve(tX %*% X)
-  epsilon <- rnorm(nrow(X), ...)
+  epsilon <- rnorm(nrow(X))
+  arg <- list(...)
+  if ("sd" %in% names(arg))
+    epsilon <- rnorm(nrow(X), sd = arg$sd)
   sigma2 <- var(epsilon)
 
   beta <- target_ratio * sigma2 / diag(XTX_inv) - XTX_inv %*% tX %*% epsilon
   my_data <- data.frame(resp_var = X %*% beta + epsilon, X)
   glm_model <- glm(resp_var ~ . -1, data = my_data, family = gaussian())
-  list(beta = beta, weights = rep(1, nrow(X)),
+  list(beta = beta, weights = rep(1, nrow(my_data)),
     data = my_data, SNR = extract_ratio(glm_model))
 }
- 
+
 
 #' Reduce the weights such that it rounds to multiples of 1000.
 #' @export
@@ -61,4 +71,15 @@ reduce_weights <- function(w, N, by = 1) {
   index <- tail(order(w), N)
   w[index] <- w[index] - by
   w
+}
+
+
+#' Extract (ungrouped) data from the beta object
+#' @export
+extract_data <- function(beta_obj) {
+  ungroup_data(beta_obj$data, beta_obj$weights)
+}
+#' Ungroup grouped data according to given weights.
+ungroup_data <- function(my_data, w) {
+  my_data[rep(1:nrow(my_data), w), ]
 }

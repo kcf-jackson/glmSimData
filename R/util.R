@@ -33,3 +33,11 @@ round_exp <- function(x) round(exp(x))
 #' Take exponential then round a number
 #' @description It's used to guarantee non-negative integers.
 ceil_exp <- function(x) ceiling(exp(x)) 
+
+
+#' Trim the first s significant digits.
+#' @export
+trim_big_number <- function(n, s = 2) {
+  trim_index <-  ceiling(log(n, 10)) - s
+  n %% (10 ^ trim_index)
+}
