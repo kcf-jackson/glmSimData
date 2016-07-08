@@ -1,0 +1,77 @@
+---
+title: "Package 'glmSimData' - Basic functionalities"
+author: "Jackson Kwok"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This package simulates data following a Generalised Linear Model(GLM) model with independent / dependent, numerical / ordinal variables.
+
+To genereate a dataset, we need to generate the covariates and the response variables.
+For the covariates, the key functions are  
+
+1. `generate_independent_covariates()` and 
+2. `generate_dependent_covariates()`,
+
+while for the response variable, the key functions are 
+
+3. `generate_response()` and 
+4. `generate_response_with_ratio()`.
+
+The detailed usage is given below.
+
+### 1. Independent covariates ( `generate_independent_covariates()` )
+```
+# Independent numerical
+X <- generate_independent_covariates(50, 3)  #assume standard normal
+X <- generate_independent_covariates(50, 3, type = 'numerical', 
+      distn = 'gaussian', mean = 5, sd = 10)  
+X <- generate_independent_covariates(50, 3, type = 'numerical',
+      distn = 'student-t', df = 4) 
+head(X)
+```
+```
+# Independent categorical ordinal
+X2 <- generate_independent_covariates(50, 3, 'categorical', 3)
+X2 <- generate_independent_covariates(50, 3, 'categorical', 3, prob = c(0.25, 0.5, 0.25))
+head(X2)
+```
+
+### 2. Dependent covariates ( `generate_dependent_covariates()` )
+```
+# Dependent numerical 
+X <- generate_dependent_covariates(50, 5, type = 'numerical'); X;
+
+# Dependent categorical ordinal
+X <- generate_dependent_covariates(50, 5, type = 'categorical', 3); X;
+```
+
+### 3. Response variables with beta provided ( `generate_response()` )
+For the response variable, we need to specify the GLM family. If we have the coefficients of the linear predictors, then we use `generate_response()`.
+```
+# Setup
+X <- generate_independent_covariates(50, 3)
+beta <- rnorm(ncol(X))
+family <- binomial()
+
+# Generate the response variable
+my_data <- generate_response(X, beta, family)
+head(my_data)
+```
+
+### 4. Response variables with signal-noise ratio provided ( `generate_response_with_ratio()` )
+If we don't have the coefficients of the linear predictors, we can specify the desired signal-to-noise ratio(SNR) instead, and we use `generate_response_with_ratio()`.
+```
+X <- generate_independent_covariates(50, 3)
+beta <- rnorm(ncol(X))
+family <- binomial()
+
+# Generate the response variable
+target_ratio <- abs(rnorm(ncol(X)))
+data_model_obj <- generate_response_with_ratio(X, family, target_ratio)
+str(data_model_obj)
+```
