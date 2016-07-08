@@ -6,6 +6,11 @@
 \usage{
 diff_ratio(r1, r2)
 }
+\arguments{
+\item{r1}{numeric vector; usually the sample signal-noise ratio.}
+
+\item{r2}{numeric vector; usually the target signal-noise ratio.}
+}
 \description{
 Compare the signal-noise ratios
 }

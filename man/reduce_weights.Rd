@@ -2,11 +2,11 @@
 % Please edit documentation in R/beta_coefficients.R
 \name{reduce_weights}
 \alias{reduce_weights}
-\title{Reduce the top N weights by 1}
+\title{[Core] Reduce the top N weights by 1}
 \usage{
 reduce_weights(w, N, by = 1)
 }
 \description{
-Reduce the top N weights by 1
+[Core] Reduce the top N weights by 1
 }
 

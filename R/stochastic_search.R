@@ -1,4 +1,6 @@
 #' Least-squared loss function
+#' @param x numeric vector.
+#' @param y numeric vector.
 #' @export
 ls_loss <- function(x, y) mean((x - y) ^ 2)
 

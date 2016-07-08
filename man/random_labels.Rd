@@ -6,6 +6,14 @@
 \usage{
 random_labels(num_label, labels = c("S", "M", "L"))
 }
+\arguments{
+\item{num_label}{integer; number of labels desired.}
+
+\item{labels}{vector; labels to be drawn from.}
+}
+\value{
+character vector; the labels.
+}
 \description{
 Generate some random labels
 }

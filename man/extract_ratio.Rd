@@ -6,7 +6,16 @@
 \usage{
 extract_ratio(model_obj, absolute = TRUE)
 }
+\arguments{
+\item{model_obj}{'glm' object.}
+
+\item{absolute}{boolean; if FALSE, return the signed ratio.}
+}
 \description{
 extract signal-noise ratio from GLM object.
+}
+\details{
+The signal-noise ratio must be non-negative, but sometimes the
+signs are needed for analysis.
 }
 

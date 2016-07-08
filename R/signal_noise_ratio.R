@@ -8,6 +8,10 @@ init_signal_noise <- function(my_data, family, tf = identity) {
 
 
 #' extract signal-noise ratio from GLM object.
+#' @param model_obj 'glm' object.
+#' @param absolute boolean; if FALSE, return the signed ratio. 
+#' @details The signal-noise ratio must be non-negative, but sometimes the 
+#' signs are needed for analysis. 
 #' @export
 extract_ratio <- function(model_obj, absolute = TRUE) {
   coeff <- summary(model_obj)$coefficients
@@ -18,6 +22,8 @@ extract_ratio <- function(model_obj, absolute = TRUE) {
 
 
 #' Compare the signal-noise ratios
+#' @param r1 numeric vector; usually the sample signal-noise ratio.
+#' @param r2 numeric vector; usually the target signal-noise ratio.
 #' @export
 diff_ratio <- function(r1, r2) {
   print(rbind(simulated_ratio = r1, target_ratio = r2))
@@ -43,11 +49,16 @@ find_signal_label <- function(signal_noise_ratio) {
   tail(SN_labels, 1)
 }
 #' Categorise signal-noise ratio (vectorised)
+#' @param signal_noise_ratio numeric vector; 
+#' @return character vector; the labels.
 #' @export
 vec_find_signal_label <- Vectorize(find_signal_label)  #Vectorize
 
 
 #' Generate some random labels
+#' @param num_label integer; number of labels desired.
+#' @param labels vector; labels to be drawn from.
+#' @return character vector; the labels.
 #' @export
 random_labels <- function(num_label, labels = c("S", "M", "L")) {
   sample(labels, num_label, replace = TRUE)

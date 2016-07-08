@@ -6,6 +6,11 @@
 \usage{
 ls_loss(x, y)
 }
+\arguments{
+\item{x}{numeric vector.}
+
+\item{y}{numeric vector.}
+}
 \description{
 Least-squared loss function
 }

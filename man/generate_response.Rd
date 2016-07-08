@@ -6,6 +6,18 @@
 \usage{
 generate_response(X, beta, family, f = identity)
 }
+\arguments{
+\item{X}{matrix; data containing the covariates}
+
+\item{beta}{numeric vector; coefficients of the linear predictors.}
+
+\item{family}{family object; see "?family" for more details.}
+
+\item{f}{function; transformation for the covariates.}
+}
+\value{
+a dataframe; the simulated data.
+}
 \description{
 Simulate the response data given covariates, beta and DGP specification.
 }

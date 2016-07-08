@@ -45,7 +45,7 @@ generate_dnum_covariates <- function(no_pts, no_covariates, mu, Sigma) {
 }
 #[Core] Generate dependent categorical covariates
 generate_dcat_covariates <- function(no_pts, no_covariates, no_categories,
-                                     marginal_prob, cor_mat) {
+                                     marginal_probs, cor_mat) {
   if (missing(cor_mat))
     cor_mat <- cov2cor(clusterGeneration::genPositiveDefMat(no_covariates)$Sigma)
   if (missing(marginal_probs))

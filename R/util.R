@@ -36,8 +36,13 @@ ceil_exp <- function(x) ceiling(exp(x))
 
 
 #' Trim the first s significant digits.
+#' @param n integer; number to be trimmed.
+#' @param s integer; number of significant to be trimmed.
+#' @examples
+#' trim_number(1337, 1)  # gives 337
+#' trim_number(1337, 2)  # gives 37
 #' @export
-trim_big_number <- function(n, s = 2) {
+trim_number <- function(n, s = 2) {
   trim_index <-  ceiling(log(n, 10)) - s
   n %% (10 ^ trim_index)
 }
