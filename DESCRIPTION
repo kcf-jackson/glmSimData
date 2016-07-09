@@ -2,12 +2,17 @@ Package: glmSimData
 Title: A package for simulating data
 Version: 0.5.0
 Authors@R: person("Jackson", "Kwok", email = "kcf.jackson@gmail.com", role = c("aut", "cre"))
-Description: Description: This package simulates data following a GLM model. The simulation supports dependent / independent, numerical / ordinal covariates and specifications of signal-to-noise ratio.
-Depends: R (>= 3.2.2)
+Description: Description: This package simulates data following a GLM model. The
+    simulation supports dependent / independent, numerical / ordinal covariates and
+    specifications of signal-to-noise ratio.
+Depends:
+    R (>= 3.2.2)
 Imports:
-  clusterGeneration,
-  orddata
+    clusterGeneration,
+    orddata
 License: GPL-3
 LazyData: true
-Suggests: knitr
+Suggests:
+    knitr
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1
