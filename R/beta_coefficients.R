@@ -63,7 +63,7 @@ response_with_ratio_gaussian <- function(X, target_ratio, ...) {
     epsilon <- rnorm(nrow(X), sd = arg$sd)
   sigma2 <- var(epsilon)
 
-  beta <- target_ratio * sigma2 * diag(XTX_inv) - XTX_inv %*% tX %*% epsilon
+  beta <- target_ratio * sqrt(sigma2 * diag(XTX_inv)) - XTX_inv %*% tX %*% epsilon
   my_data <- data.frame(resp_var = X %*% beta + epsilon, X)
   glm_model <- glm(resp_var ~ . -1, data = my_data, family = gaussian())
   list(beta = beta, weights = rep(1, nrow(my_data)),
