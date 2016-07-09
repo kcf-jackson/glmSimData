@@ -4,15 +4,15 @@
 #' @param target_ratio numeric vector; the desired signal-noise ratio
 #' @param group boolean; Should the data be grouped or ungrouped. See details.
 #' @param f function; transformation for the covariates.
-#' @param ... extra parameters; see details. 
-#' @details For families other than 'gaussian', the function reweights the 
-#' samples such that the target signal-noise ratio is reached. This implies 
-#' the data records will be treated as grouped records. If 'group' is TRUE, 
-#' then the function returns the grouped data, otherwise, the function returns 
+#' @param ... extra parameters; see details.
+#' @details For families other than 'gaussian', the function reweights the
+#' samples such that the target signal-noise ratio is reached. This implies
+#' the data records will be treated as grouped records. If 'group' is TRUE,
+#' then the function returns the grouped data, otherwise, the function returns
 #' the ungrouped data (through duplication). \cr\cr
-#' If 'family' is gaussian, one can pass the 'sd' argument through `...`. 
-#' Otherwise, the function runs a stochastic search algorithm to search 
-#' for the predictors coefficients, and one can pass the 'max_iter' argument 
+#' If 'family' is gaussian, one can pass the 'sd' argument through `...`.
+#' Otherwise, the function runs a stochastic search algorithm to search
+#' for the predictors coefficients, and one can pass the 'max_iter' argument
 #' (default to be 100) to `...`. \cr\cr
 #' Other parameters are tol, curiosity and block_num. They are not recommended
 #' to external users.
@@ -54,6 +54,7 @@ response_with_ratio <- function(X, family, f = identity, target_ratio,
 }
 #' [Core] Generate predictor coefficients according to the signal-noise ratio for Gaussian distribution
 response_with_ratio_gaussian <- function(X, target_ratio, ...) {
+  X <- as.matrix(X)
   tX <- t(X)
   XTX_inv <- solve(tX %*% X)
   epsilon <- rnorm(nrow(X))
