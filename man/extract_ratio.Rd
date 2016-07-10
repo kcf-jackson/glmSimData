@@ -15,7 +15,7 @@ extract_ratio(model_obj, absolute = TRUE)
 extract signal-noise ratio from GLM object.
 }
 \details{
-The signal-noise ratio must be non-negative, but sometimes the 
+The signal-noise ratio must be non-negative, but sometimes the
 signs are needed for analysis.
 }
 
