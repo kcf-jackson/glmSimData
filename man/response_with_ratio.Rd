@@ -5,7 +5,7 @@
 \title{[Core] Optimise the weights matrix to match the target signal-noise ratio}
 \usage{
 response_with_ratio(X, family, f = identity, target_ratio, max_iter = 100,
-  tol = 0.1, curiosity = 1000, block_num = 20)
+  tol = 0.1, curiosity = 1000, block_num)
 }
 \description{
 [Core] Optimise the weights matrix to match the target signal-noise ratio

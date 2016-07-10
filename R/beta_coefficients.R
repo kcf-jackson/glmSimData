@@ -37,8 +37,8 @@ generate_response_with_ratio <- function(
 }
 #' [Core] Optimise the weights matrix to match the target signal-noise ratio
 response_with_ratio <- function(X, family, f = identity, target_ratio,
-                          max_iter = 100, tol = 0.1, curiosity = 1000,
-                          block_num = 20) {
+                          max_iter = 100, tol = 0.1, curiosity = 1000, block_num) {
+  if (missing(block_num)) block_num <- max(ceiling(nrow(X) / 50), 20)
   beta <- rnorm(ncol(X))
   my_data <- generate_response(X, beta, family, f = f)
   csignal_ratio <- init_signal_noise(my_data, family, tf = ceil_exp) %>%
