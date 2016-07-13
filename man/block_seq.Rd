@@ -9,4 +9,5 @@ block_seq(dim_param, block_num, block_size)
 \description{
 Partition a sequence into blocks
 }
+\keyword{internal}
 

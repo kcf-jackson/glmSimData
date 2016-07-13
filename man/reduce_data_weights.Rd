@@ -4,12 +4,18 @@
 \alias{reduce_data_weights}
 \title{Reduce the weights such that it rounds to 'nice' numbers.}
 \usage{
-reduce_data_weights(data_model_obj, N)
+reduce_data_weights(data_model_obj, N, by = 1, choose = c("random", "top"))
 }
 \arguments{
 \item{data_model_obj}{An object from 'generate_response_with_ratio'.}
 
 \item{N}{Number of weights to be trimmed.}
+
+\item{by}{Integer; desired decrement for each weight.}
+
+\item{choose}{One of 'random' and 'top'.
+If 'random', the function reduces a random set of N weights.
+If 'top', the function reduces the heaviest N weights.}
 }
 \description{
 Reduce the weights such that it rounds to 'nice' numbers.

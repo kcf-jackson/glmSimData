@@ -22,4 +22,5 @@ m0 <- matrix(1:9, nrow = 3); m0
 v0 <- c(0.2, 0.2, 0.9); v0
 matrix_times_vector( m0, v0 )
 }
+\keyword{internal}
 

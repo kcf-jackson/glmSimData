@@ -9,4 +9,5 @@ round_exp(x)
 \description{
 It's used to guarantee non-negative integers.
 }
+\keyword{internal}
 

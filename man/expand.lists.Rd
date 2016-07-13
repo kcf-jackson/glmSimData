@@ -9,4 +9,5 @@ expand.lists(df0, df1)
 \description{
 extension of expand.grid to 2 lists
 }
+\keyword{internal}
 

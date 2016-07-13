@@ -11,4 +11,5 @@ stochastic_search(dim_param, perf_fun, loss_fun = ls_loss, target_perf,
 \description{
 Stochastic Search
 }
+\keyword{internal}
 
