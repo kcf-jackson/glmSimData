@@ -31,9 +31,9 @@ generate_response_with_ratio <- function(
     return( list(beta = glm_model$coefficients, weights = ceil_exp(w),
             data = my_data, SNR = extract_ratio(glm_model)) )
 
-  list(beta = glm_model$coefficients, weights = rep(1, nrow(X)),
-        data = ungroup_data(my_data, ceil_exp(w)),
-        SNR = extract_ratio(glm_model))
+  my_data <- ungroup_data(my_data, ceil_exp(w))
+  list(beta = glm_model$coefficients, weights = rep(1, nrow(my_data)),
+        data = my_data, SNR = extract_ratio(glm_model))
 }
 #[Core] Optimise the weights matrix to match the target signal-noise ratio
 response_with_ratio <- function(X, family, f = identity, target_ratio,
@@ -74,11 +74,17 @@ response_with_ratio_gaussian <- function(X, target_ratio, ...) {
 #' Reduce the weights such that it rounds to 'nice' numbers.
 #' @param data_model_obj An object from 'generate_response_with_ratio'.
 #' @param N Number of weights to be trimmed.
+#' @param by Integer; desired decrement for each weight.
+#' @param choose One of 'random' and 'top'.
+#' If 'random', the function reduces a random set of N weights.
+#' If 'top', the function reduces the heaviest N weights.
 #' @details Not for external users.
 #' @export
-reduce_data_weights <- function(data_model_obj, N) {
+reduce_data_weights <- function(data_model_obj, N, by = 1, choose = c('random', 'top')) {
   w <- data_model_obj$weights
-  new_w <- reduce_weights(w, N)
+  reduce_FUN <- reduce_weights_randomly
+  if (choose == 'top') reduce_FUN <- reduce_weights
+  new_w <- reduce_FUN(w, N, by)
   glm_model <- glm(resp_var ~ . -1, data = data_model_obj$data,
                     family = family, weights = new_w)
   list(beta = glm_model$coefficients, weights = new_w,
@@ -87,6 +93,12 @@ reduce_data_weights <- function(data_model_obj, N) {
 #[Core] Reduce the top N weights by 1
 reduce_weights <- function(w, N, by = 1) {
   index <- tail(order(w), N)
+  w[index] <- w[index] - by
+  w
+}
+#[Core] Reduce random N weights by 1
+reduce_weights_randomly <- function(w, N, by = 1) {
+  index <- sample(seq_along(w), N)
   w[index] <- w[index] - by
   w
 }
