@@ -1,4 +1,4 @@
-#' Initialise objective function for optimisation
+# Initialise objective function for optimisation
 init_signal_noise <- function(my_data, family, tf = identity) {
   function(param) {
     glm_model <- glm(resp_var ~ . -1, data = my_data, family, weights = tf(param))
@@ -34,7 +34,7 @@ diff_ratio <- function(r1, r2) {
 }
 
 
-#' Categorise signal-noise ratio
+# Categorise signal-noise ratio
 atomic_find_signal_label <- function(signal_noise_ratio) {
   # <--XS-- 0.22 --S-- 0.61 --M-- 1.65 --L-- 4.48 --XL-->
   # SN_intervals <- c(0.22, 0.61, 1.65, 4.48)  #on exponential scale

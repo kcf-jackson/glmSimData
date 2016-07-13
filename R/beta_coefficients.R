@@ -35,7 +35,7 @@ generate_response_with_ratio <- function(
         data = ungroup_data(my_data, ceil_exp(w)),
         SNR = extract_ratio(glm_model))
 }
-#' [Core] Optimise the weights matrix to match the target signal-noise ratio
+#[Core] Optimise the weights matrix to match the target signal-noise ratio
 response_with_ratio <- function(X, family, f = identity, target_ratio,
                           max_iter = 100, tol = 0.1, curiosity = 1000, block_num) {
   if (missing(block_num)) block_num <- max(ceiling(nrow(X) / 50), 20)
@@ -52,7 +52,7 @@ response_with_ratio <- function(X, family, f = identity, target_ratio,
   print(res$loss)
   list(data = my_data, return = res)
 }
-#' [Core] Generate predictor coefficients according to the signal-noise ratio for Gaussian distribution
+#[Core] Generate predictor coefficients according to the signal-noise ratio for Gaussian distribution
 response_with_ratio_gaussian <- function(X, target_ratio, ...) {
   X <- as.matrix(X)
   tX <- t(X)
@@ -84,7 +84,7 @@ reduce_data_weights <- function(data_model_obj, N) {
   list(beta = glm_model$coefficients, weights = new_w,
         data = data_model_obj$data, SNR = extract_ratio(glm_model))
 }
-#' [Core] Reduce the top N weights by 1
+#[Core] Reduce the top N weights by 1
 reduce_weights <- function(w, N, by = 1) {
   index <- tail(order(w), N)
   w[index] <- w[index] - by
@@ -99,7 +99,7 @@ reduce_weights <- function(w, N, by = 1) {
 extract_ungrouped_data <- function(data_model_obj) {
   ungroup_data(data_model_obj$data, data_model_obj$weights)
 }
-#' Ungroup grouped data according to given weights.
+#Ungroup grouped data according to given weights.
 ungroup_data <- function(my_data, w) {
   my_data[rep(1:nrow(my_data), w), ]
 }

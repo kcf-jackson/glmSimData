@@ -5,15 +5,16 @@
 ls_loss <- function(x, y) mean((x - y) ^ 2)
 
 
-#' Zero regularisation function
+# Zero regularisation function
 zero_reg <- function(x) 0
-#' L1 regularisation function
+# L1 regularisation function
 L1_reg <- function(param) sum(abs(param))
-#' L2 regularisation function
+# L2 regularisation function
 L2_reg <- function(param) sum(param ^ 2)
 
 
 #' Partition a sequence into blocks
+#' @keywords internal
 block_seq <- function(dim_param, block_num, block_size) {
   if (!missing(block_num) & !missing(block_size))
     stop("'block_num' and 'block_size' cannot both be specified.")
@@ -22,12 +23,12 @@ block_seq <- function(dim_param, block_num, block_size) {
   if (!missing(block_size))
     return( block_seq_by_size(dim_param, block_size) )
 }
-#' [Core] Partition a sequence into blocks given number of blocks
+# [Core] Partition a sequence into blocks given number of blocks
 block_seq_by_num <- function(dim_param, block_num) {
   res <- unique(floor(seq(1, dim_param + 1, length.out = block_num)))
   res
 }
-#' [Core] Partition a sequence into blocks given block size
+# [Core] Partition a sequence into blocks given block size
 block_seq_by_size <- function(dim_param, block_size) {
   res <- seq(1, dim_param + 1, by = block_size)
   if (tail(res, 1) != dim_param + 1) res <- c(res, dim_param + 1)
@@ -36,10 +37,11 @@ block_seq_by_size <- function(dim_param, block_size) {
 
 
 #' Stochastic Search
+#' @keywords internal
 stochastic_search <- function(dim_param, perf_fun,
                               loss_fun=ls_loss, target_perf,
                               max_iter=100, tol=0, curiosity=1,
-                              block_num, block_size, 
+                              block_num, block_size,
                               lambda=0, reg_fun=zero_reg, param) {
   #initialisation
   if (!missing(block_num) & !missing(block_size))

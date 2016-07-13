@@ -24,7 +24,7 @@ generate_response <- function(X, beta, family, f = identity) {
 }
 
 
-#' Return the sampling distribution of the family object
+# Return the sampling distribution of the family object
 family2distFUN <- function(family, ...) {
   distFUN <- switch(
     family$family,
