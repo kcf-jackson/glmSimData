@@ -4,7 +4,7 @@
 \alias{reduce_data_weights}
 \title{Reduce the weights such that it rounds to 'nice' numbers.}
 \usage{
-reduce_data_weights(data_model_obj, N, by = 1, choose = "random")
+reduce_data_weights(data_model_obj, N, by = 1, choose = "random", family)
 }
 \arguments{
 \item{data_model_obj}{An object from 'generate_response_with_ratio'.}

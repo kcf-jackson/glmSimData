@@ -80,7 +80,8 @@ response_with_ratio_gaussian <- function(X, target_ratio, ...) {
 #' If 'top', the function reduces the heaviest N weights.
 #' @details Not for external users.
 #' @export
-reduce_data_weights <- function(data_model_obj, N, by = 1, choose = "random") {
+reduce_data_weights <- function(data_model_obj, N, by = 1,
+                                choose = "random", family) {
   w <- data_model_obj$weights
   reduce_FUN <- reduce_weights_randomly
   if (choose == 'top') reduce_FUN <- reduce_weights
