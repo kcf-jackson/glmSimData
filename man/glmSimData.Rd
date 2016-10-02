@@ -4,9 +4,9 @@
 \name{glmSimData}
 \alias{glmSimData}
 \alias{glmSimData-package}
-\title{A package for simulating data}
+\title{A package for simulating data from a GLM model}
 \description{
-This package simulates artifical data following a GLM model with dependent / independent, numerical / ordinal covariates.
+This package simulates data following a GLM model with dependent / independent, numerical / ordinal covariates.
 }
 \author{
 Jackson Kwok

@@ -1,10 +1,10 @@
-#' A package for simulating data
-#' @description This package simulates artifical data following a GLM model with dependent / independent, numerical / ordinal covariates.
+#' A package for simulating data from a GLM model
+#' @description This package simulates data following a GLM model with dependent / independent, numerical / ordinal covariates.
 #' @docType package
 #' @name glmSimData
 #' @author Jackson Kwok
 NULL
-#> NULL
+
 
 #' Import functions from the base packages.
 #' @name Imported functions
