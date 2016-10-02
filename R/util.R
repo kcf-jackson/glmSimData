@@ -3,9 +3,11 @@
 #' @param v1 a vector
 #' @return a vector
 #' @examples
+#' \dontrun{
 #' m0 <- matrix(1:9, nrow = 3); m0
 #' v0 <- c(0.2, 0.2, 0.9); v0
 #' matrix_times_vector( m0, v0 )
+#' }
 #' @keywords internal
 matrix_times_vector <- function(m1, v1){
   cum_sum <- numeric(nrow(m1))

@@ -6,20 +6,10 @@
 NULL
 #> NULL
 
-#' Pipe operator
-#' @name %>%
-#' @rdname pipe
+#' Import functions from the base packages.
+#' @name Imported functions
 #' @keywords internal
-#' @export
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
-#' Compound assignment pipe operator
-#' @name %<>%
-#' @rdname compound-assignment-pipe
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %<>%
-#' @usage lhs \%<>\% rhs
+#' @importFrom stats cov2cor gaussian glm model.matrix rbinom rexp rnbinom
+#' rnorm rpois rt runif var
+#' @importFrom utils head tail
 NULL

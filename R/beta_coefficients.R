@@ -41,8 +41,7 @@ response_with_ratio <- function(X, family, f = identity, target_ratio,
   if (missing(block_num)) block_num <- max(ceiling(nrow(X) / 50), 20)
   beta <- rnorm(ncol(X))
   my_data <- generate_response(X, beta, family, f = f)
-  csignal_ratio <- init_signal_noise(my_data, family, tf = ceil_exp) %>%
-                    compiler::cmpfun()
+  csignal_ratio <- init_signal_noise(my_data, family, tf = ceil_exp)
   res <- stochastic_search(nrow(X), csignal_ratio, ls_loss, target_ratio,
                            max_iter = max_iter, tol = tol,
                            curiosity = curiosity, block_num = block_num)
@@ -78,6 +77,7 @@ response_with_ratio_gaussian <- function(X, target_ratio, ...) {
 #' @param choose One of 'random' and 'top'.
 #' If 'random', the function reduces a random set of N weights.
 #' If 'top', the function reduces the heaviest N weights.
+#' @param family GLM family, see "?family" for details.
 #' @details Not for external users.
 #' @export
 reduce_data_weights <- function(data_model_obj, N, by = 1,

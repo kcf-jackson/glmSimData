@@ -27,8 +27,8 @@ extract_ratio <- function(model_obj, absolute = TRUE) {
 #' @export
 diff_ratio <- function(r1, r2) {
   print(rbind(simulated_ratio = r1, target_ratio = r2))
-  l1 <- vec_find_signal_label(r1)
-  l2 <- vec_find_signal_label(r2)
+  l1 <- find_signal_label(r1)
+  l2 <- find_signal_label(r2)
   print(rbind(simulated_label = l1, target_label = l2))
   cat("The loss is: ", ls_loss(r1, r2), "\n")
 }

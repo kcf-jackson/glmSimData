@@ -16,6 +16,8 @@ reduce_data_weights(data_model_obj, N, by = 1, choose = "random", family)
 \item{choose}{One of 'random' and 'top'.
 If 'random', the function reduces a random set of N weights.
 If 'top', the function reduces the heaviest N weights.}
+
+\item{family}{GLM family, see "?family" for details.}
 }
 \description{
 Reduce the weights such that it rounds to 'nice' numbers.

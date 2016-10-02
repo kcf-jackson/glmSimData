@@ -1,6 +1,8 @@
 #' A function to generate irrelevant covariates, numerical or categorical
 #' @param df0 dataframe; the data
 #' @param no_covariates integer; number of irrelevant covariates to be added
+#' @param type The type of the covariates; it must be 'numerical' or 'categorical'.
+#' @param ... Optional parameters to be passed to "generate_independent_covariates".
 #' @details This function calls 'generate_independent_covariates'.
 #' See '?generate_independent_covariates' for details.
 #' @export

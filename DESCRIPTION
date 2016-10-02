@@ -9,7 +9,12 @@ Depends:
     R (>= 3.2.2)
 Imports:
     clusterGeneration,
-    orddata
+    orddata,
+    magrittr,
+    MASS,
+    VGAM,
+    dplyr,
+    purrr
 License: GPL-3
 LazyData: true
 Suggests:

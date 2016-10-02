@@ -10,6 +10,10 @@ add_irrelevant_covariates(df0, no_covariates, type, ...)
 \item{df0}{dataframe; the data}
 
 \item{no_covariates}{integer; number of irrelevant covariates to be added}
+
+\item{type}{The type of the covariates; it must be 'numerical' or 'categorical'.}
+
+\item{...}{Optional parameters to be passed to "generate_independent_covariates".}
 }
 \description{
 A function to generate irrelevant covariates, numerical or categorical
