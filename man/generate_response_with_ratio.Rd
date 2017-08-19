@@ -36,4 +36,3 @@ for the predictors coefficients, and one can pass the 'max_iter' argument
 Other parameters are tol, curiosity and block_num. They are not recommended
 to external users.
 }
-

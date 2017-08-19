@@ -15,4 +15,3 @@ character vector; the labels.
 \description{
 Categorise signal-noise ratio (vectorised)
 }
-

@@ -15,4 +15,3 @@ create_labels_table(labels = c("S", "M", "L"), partition = c(0, exp(c(0.5,
 \description{
 Create a dataframe mapping labels to intervals.
 }
-

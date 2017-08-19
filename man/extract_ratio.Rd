@@ -18,4 +18,3 @@ extract signal-noise ratio from GLM object.
 The signal-noise ratio must be non-negative, but sometimes the
 signs are needed for analysis.
 }
-

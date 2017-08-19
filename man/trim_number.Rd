@@ -18,4 +18,3 @@ Trim the first s significant digits.
 trim_number(1337, 1)  # gives 337
 trim_number(1337, 2)  # gives 37
 }
-

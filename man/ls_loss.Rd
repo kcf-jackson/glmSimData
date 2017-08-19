@@ -14,4 +14,3 @@ ls_loss(x, y)
 \description{
 Least-squared loss function
 }
-

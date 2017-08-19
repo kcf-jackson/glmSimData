@@ -25,4 +25,3 @@ matrix_times_vector( m0, v0 )
 }
 }
 \keyword{internal}
-

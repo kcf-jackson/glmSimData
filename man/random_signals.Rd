@@ -20,4 +20,3 @@ corresponding to the label.
 labels_table <- create_labels_table()
 random_signals(c(rep("S", 4), rep("M", 3)), labels_table)
 }
-

@@ -15,4 +15,3 @@ Extract (ungrouped) data from the beta object
 \details{
 Not for external users.
 }
-

@@ -7,4 +7,3 @@
 Import functions from the base packages.
 }
 \keyword{internal}
-

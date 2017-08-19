@@ -14,4 +14,3 @@ diff_ratio(r1, r2)
 \description{
 Compare the signal-noise ratios
 }
-

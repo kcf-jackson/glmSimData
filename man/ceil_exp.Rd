@@ -10,4 +10,3 @@ ceil_exp(x)
 It's used to guarantee non-negative integers.
 }
 \keyword{internal}
-

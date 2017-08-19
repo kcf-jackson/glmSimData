@@ -10,4 +10,3 @@ expand.lists(df0, df1)
 extension of expand.grid to 2 lists
 }
 \keyword{internal}
-

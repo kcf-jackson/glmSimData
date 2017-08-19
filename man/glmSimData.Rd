@@ -11,4 +11,3 @@ This package simulates data following a GLM model with dependent / independent, 
 \author{
 Jackson Kwok
 }
-

@@ -25,4 +25,3 @@ Reduce the weights such that it rounds to 'nice' numbers.
 \details{
 Not for external users.
 }
-

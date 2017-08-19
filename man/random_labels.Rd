@@ -17,4 +17,3 @@ character vector; the labels.
 \description{
 Generate some random labels
 }
-

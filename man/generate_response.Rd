@@ -4,7 +4,7 @@
 \alias{generate_response}
 \title{Simulate the response data given covariates, beta and DGP specification.}
 \usage{
-generate_response(X, beta, family, f = identity)
+generate_response(X, beta, family, formula)
 }
 \arguments{
 \item{X}{matrix; data containing the covariates}
@@ -21,4 +21,3 @@ a dataframe; the simulated data.
 \description{
 Simulate the response data given covariates, beta and DGP specification.
 }
-
