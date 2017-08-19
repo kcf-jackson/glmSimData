@@ -5,13 +5,13 @@
 #' @param f function; transformation for the covariates.
 #' @return a dataframe; the simulated data.
 #' @export
-generate_response <- function(X, beta, family, f = identity) {
+generate_response <- function(X, beta, family, formula) {
   invLinkFUN = family$linkinv
   distFUN = family2distFUN(family)
-  if (all.equal(f, identity)) {
+  if (missing(formula)) {
     Z <- X
   } else {
-    Z <- model.matrix(f, data = X)
+    Z <- model.matrix(formula, data = X)
   }
   if (ncol(Z) != length(beta))
     stop("The number of beta doesn't match the number of covariates.")
