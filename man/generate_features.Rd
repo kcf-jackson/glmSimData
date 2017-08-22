@@ -4,7 +4,7 @@
 \alias{generate_features}
 \title{Generate independent features - numerical or (ordinal) categorical}
 \usage{
-generate_features(n, p, distn = "gaussian", num_categories = 5, ...)
+generate_features(n, p, distn = "gaussian", num_categories, ...)
 }
 \arguments{
 \item{n}{integer; number of data points to be simulated.}

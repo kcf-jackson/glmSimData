@@ -4,7 +4,7 @@
 \alias{add_irrelevant_features}
 \title{A function to add irrelevant features to existing data}
 \usage{
-add_irrelevant_features(df0, p, distn, ...)
+add_irrelevant_features(df0, p, distn, num_categories, ...)
 }
 \arguments{
 \item{df0}{dataframe; the data}
@@ -12,6 +12,8 @@ add_irrelevant_features(df0, p, distn, ...)
 \item{p}{integer; number of irrelevant covariates to be added}
 
 \item{distn}{One of 'gaussian', 'student-t', 'pareto', 'uniform', 'discrete_uniform', 'poisson', 'gamma'.}
+
+\item{num_categories}{integer; number of categories for 'discrete_uniform'.}
 
 \item{...}{Optional parameters to be passed to "generate_features".}
 }
