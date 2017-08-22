@@ -11,7 +11,7 @@
 generate_features <- function(n, p, distn = "gaussian", num_categories = 5, ...) {
   distn_list <- c("gaussian", "student-t", "pareto", "uniform",
                   "discrete_uniform", "poisson", "gamma")
-  if ((type == 'categorical') & (missing(num_categories)))
+  if ((distn == 'discrete_uniform') & (missing(num_categories)))
     print("parameter 'num_categories' is not provided, it is set to 5 by default.")
   if (!(distn %in% distn_list))
     stop(
@@ -22,6 +22,8 @@ generate_features <- function(n, p, distn = "gaussian", num_categories = 5, ...)
   if (distn == "discrete_uniform") {
     # Categorical distribution
     samples <- sample(x = num_categories, size = num_sim, replace = TRUE, ...) - 1
+    res <- data.frame(matrix(samples, nrow = n, ncol = p))
+    res <- purrr::map(res, as.factor) %>% data.frame()
   } else {
     # Numerical distribution
     rdist <- switch(distn,
@@ -29,6 +31,7 @@ generate_features <- function(n, p, distn = "gaussian", num_categories = 5, ...)
       "uniform" = runif, "poisson" = rpois, "gamma" = rgamma
     )
     samples <- rdist(num_sim, ...)
+    res <- data.frame(matrix(samples, nrow = n, ncol = p))
   }
-  data.frame(matrix(samples, nrow = n, ncol = p))
+  res
 }

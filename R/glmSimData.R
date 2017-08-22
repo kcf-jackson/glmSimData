@@ -5,11 +5,13 @@
 #' @author Jackson Kwok
 NULL
 
-
-#' Import functions from the base packages.
+#' Import functions from the packages.
 #' @name Imported functions
 #' @keywords internal
-#' @importFrom stats cov2cor gaussian glm model.matrix rbinom rexp rnbinom
+#' @importFrom stats cov2cor gaussian glm model.matrix rbinom rexp rnbinom rgamma
 #' rnorm rpois rt runif var
 #' @importFrom utils head tail
+#' @importFrom magrittr %>% %<>%
 NULL
+
+utils::globalVariables(c("."))

@@ -2,7 +2,7 @@
 #' @param X matrix; data containing the covariates
 #' @param beta numeric vector; coefficients of the linear predictors.
 #' @param family family object; see "?family" for more details.
-#' @param f function; transformation for the covariates.
+#' @param formula formula object; transformation for the covariates.
 #' @return a dataframe; the simulated data.
 #' @export
 generate_response <- function(X, beta, family, formula) {

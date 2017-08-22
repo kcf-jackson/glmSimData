@@ -13,7 +13,7 @@ generate_response(X, beta, family, formula)
 
 \item{family}{family object; see "?family" for more details.}
 
-\item{f}{function; transformation for the covariates.}
+\item{formula}{formula object; transformation for the covariates.}
 }
 \value{
 a dataframe; the simulated data.

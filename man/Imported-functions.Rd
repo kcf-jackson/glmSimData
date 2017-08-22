@@ -2,8 +2,8 @@
 % Please edit documentation in R/glmSimData.R
 \name{Imported functions}
 \alias{Imported functions}
-\title{Import functions from the base packages.}
+\title{Import functions from the packages.}
 \description{
-Import functions from the base packages.
+Import functions from the packages.
 }
 \keyword{internal}
