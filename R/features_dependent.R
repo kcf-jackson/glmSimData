@@ -50,7 +50,7 @@ generate_dcat_covariates <- function(n, p, num_categories,
   if (missing(marginal_probs))
     marginal_probs <- purrr::map(seq(p), ~discrete_uniform(num_categories))
 
-  list(X = orddata::rmvord(n = n, probs = marginal_probs, Cor = cor_mat),
+  list(X = orddata::rmvord(n = n, probs = marginal_probs, Cor = cor_mat, showCor_norm = F),
        correlation_matrix = cor_mat)
 }
 
