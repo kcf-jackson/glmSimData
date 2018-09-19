@@ -31,7 +31,8 @@ generate_dependent_features <- function(n, p, type = 'numerical',
   X <- X_and_cor_mat$X
   cor_mat <- X_and_cor_mat$correlation_matrix
 
-  list(covariates = data.frame(X), correlation_matrix = cor_mat)
+  attr(X, "correlation_matrix") <- cor_mat
+  X
 }
 
 #[Core] Generate dependent numerical covariates
